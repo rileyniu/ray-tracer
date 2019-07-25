@@ -22,6 +22,20 @@ public:
         e[1] = e1;
         e[2] = e2;
     }
+    // inline reduces function call overhead
+    inline float x(){ return e[0];}
+    inline float y(){ return e[1];}
+    inline float z(){ return e[2];}
+    inline float r(){ return e[0];}
+    inline float g(){ return e[1];}
+    inline float b(){ return e[2];}
+    inline float length() const {
+        return sqrt(e[0]^2+e[1]^2+e[2]^2);
+    }
+    // const value cannot be altered once declared
+    
+    // operator definitions, overload and functions
+    
     
 };
 
