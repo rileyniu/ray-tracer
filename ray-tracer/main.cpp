@@ -8,7 +8,18 @@
 
 #include <iostream>
 #include "vec3.h"
+#include "ray.h"
 
+// A simple color(ray) function that returns the background blue color by
+// linearly blends white and blue depending on the up/downess of the y coordinate.
+vec3 color(const ray& r){
+    vec3 unit_dir = unit_vector(r.direction());
+    float t = 0.5* (unit_dir.y()+1.0);
+    return vec3(1.0, 1.0, 1.0)*(1.0-t)+vec3(0.5, 0.7, 1.0)*t;
+}
+
+// to create this image by a ray tracer: from each pixel, back trace a ray to the origin,
+// then compute the color of the pixel
 int main() {
     int nx = 200;
     int ny = 100;
@@ -25,3 +36,5 @@ int main() {
     }
     return 0;
 }
+
+

@@ -11,7 +11,6 @@
 #include "vec3.h"
 
 class ray {
-    <#instance variables#>
     
 public:
     vec3 A;
@@ -21,8 +20,8 @@ public:
         A = a; B = b;
     }
     vec3 origin() const { return A; }
-    vec3 direction() const { return b; }
-    vec3 point_at_parameter(float t) const{return A + t*B; }
+    vec3 direction() const { return B; }
+    vec3 point_at_parameter(float t) const{return A + B*t; }
 };
 
 
