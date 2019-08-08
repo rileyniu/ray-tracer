@@ -98,7 +98,7 @@ inline vec3 operator/(const vec3& v1, const vec3& v2){
 }
 
 // scalar multiplication
-inline vec3 operator*(const vec3& v1, float k){
+inline vec3 operator*(float k, const vec3& v1){
     return vec3(v1.e[0]*k, v1.e[1]*k, v1.e[2]*k);
 }
 
