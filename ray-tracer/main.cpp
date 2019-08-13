@@ -12,9 +12,24 @@
 #include "ray.h"
 
 using namespace std;
+
+//p(t) = A+t*B
+//dot((p(t)-origin),(p(t)-origin)) = R*R, solve for t
+//(A-C)*(A-C)+ 2tB*(A-C)+ t^2 B*B - R*R = 0
+// determine how many roots the quadratic function has
+bool hit_sphere(const vec3& origin, float radius, const ray& r){
+    float a = dot(r.direction(), r.direction());
+    float b = 2.0*dot(r.direction(), r.origin()-origin);
+    float c = dot(r.origin()-origin, r.origin()-origin);
+    return b*b-4*a*c>0;
+}
+
 // A simple color(ray) function that returns the background blue color by
 // linearly blends white and blue depending on the up/downess of the y coordinate.
 vec3 color(const ray& r){
+    if (hit_sphere(vec3(0,0,-1), 0.5, r)){
+        return vec3(1, 0, 0);
+    }
     vec3 unit_dir = unit_vector(r.direction());
     float t = 0.5* (unit_dir.y()+1.0);
     return (1.0-t)*vec3(1.0, 1.0, 1.0)+t*vec3(0.5, 0.7, 1.0);
