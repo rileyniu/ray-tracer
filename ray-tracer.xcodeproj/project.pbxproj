@@ -23,6 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0782A76123C9D14600573771 /* hitable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hitable.h; sourceTree = "<group>"; };
+		0782A76323C9D52A00573771 /* sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sphere.h; sourceTree = "<group>"; };
 		07E419DF22F8B76400A61DD4 /* ray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ray.h; sourceTree = "<group>"; };
 		07ED3E5F22E6B2B80028002A /* ray-tracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ray-tracer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07ED3E6222E6B2B80028002A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0782A76223C9D50400573771 /* hitables */ = {
+			isa = PBXGroup;
+			children = (
+				0782A76323C9D52A00573771 /* sphere.h */,
+			);
+			path = hitables;
+			sourceTree = "<group>";
+		};
 		07ED3E5622E6B2B80028002A = {
 			isa = PBXGroup;
 			children = (
@@ -59,9 +69,11 @@
 		07ED3E6122E6B2B80028002A /* ray-tracer */ = {
 			isa = PBXGroup;
 			children = (
+				0782A76223C9D50400573771 /* hitables */,
 				07ED3E6222E6B2B80028002A /* main.cpp */,
 				07ED3E6922E7F4070028002A /* vec3.h */,
 				07E419DF22F8B76400A61DD4 /* ray.h */,
+				0782A76123C9D14600573771 /* hitable.h */,
 			);
 			path = "ray-tracer";
 			sourceTree = "<group>";

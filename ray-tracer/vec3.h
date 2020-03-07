@@ -40,10 +40,14 @@ public:
     
     // a variable which stores the address of another variable is called a pointer
     // vec3& means function returns a reference/address instead of value
-    inline const vec3& operator+ () const {return *this; } // this is a const member function that returns a const reference
+    
+    // this is a const member function that returns a const reference
+    inline const vec3& operator+ () const {return *this; }
     inline vec3 operator-() const {return vec3(-e[0], -e[1], -e[2]); }
     inline float operator[] (int i) const {return e[i]; }
-    inline float& operator[] (int i) { return e[i]; }; // this cannot be a const member function because the returned reference can then be used to modify e
+    
+    inline float& operator[] (int i) { return e[i]; };
+    
     
     inline vec3& operator+=(const vec3 &v2);
     inline vec3& operator-=(const vec3 &v2);
@@ -158,7 +162,7 @@ inline vec3& vec3::operator/=(const float k){
     return *this;
 }
 
-inline vec3 unit_vector(vec3 v){
+inline vec3 normalize(vec3 v){
     return v / v.length();
 }
 

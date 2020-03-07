@@ -13,25 +13,37 @@
 
 using namespace std;
 
-//p(t) = A+t*B
-//dot((p(t)-origin),(p(t)-origin)) = R*R, solve for t
-//(A-C)*(A-C)+ 2tB*(A-C)+ t^2 B*B - R*R = 0
-// determine how many roots the quadratic function has
-bool hit_sphere(const vec3& origin, float radius, const ray& r){
+/* Chapter 4:
+   p(t) = A+t*B
+   dot((p(t)-origin),(p(t)-origin)) = R*R => (A-C)*(A-C)+ 2tB*(A-C)+ t^2 B*B - R*R = 0
+   determine how many roots the quadratic function has.
+ 
+ Chapter 5:
+ If we hit a sphere return the point P on it, then obtain the surface normal by P-O
+ */
+float hit_sphere(const vec3& origin, float radius, const ray& r){
     float a = dot(r.direction(), r.direction());
     float b = 2.0*dot(r.direction(), r.origin()-origin);
     float c = dot(r.origin()-origin, r.origin()-origin);
-    return b*b-4*a*c>0;
+    float t = b*b-4*a*c;
+    if (t<0) {
+        return -1;
+    }else{
+        return (-b-sqrt(t))/2*a;
+    }
 }
 
 // A simple color(ray) function that returns the background blue color by
 // linearly blends white and blue depending on the up/downess of the y coordinate.
 vec3 color(const ray& r){
-    if (hit_sphere(vec3(0,0,-1), 0.5, r)){
-        return vec3(1, 0, 0);
+    float t = hit_sphere(vec3(0,0,-1), 0.5, r);
+    if (t>0){
+        // unit sphere normal, mapped to (0,1) to visualize
+        vec3 norm = normalize(r.point_at_t(t)-vec3(0,0,-1));
+        return 0.5*(norm+vec3(1.0, 1.0, 1.0));
     }
-    vec3 unit_dir = unit_vector(r.direction());
-    float t = 0.5* (unit_dir.y()+1.0);
+    vec3 unit_dir = normalize(r.direction());
+    t = 0.5* (unit_dir.y()+1.0);
     return (1.0-t)*vec3(1.0, 1.0, 1.0)+t*vec3(0.5, 0.7, 1.0);
 }
 
